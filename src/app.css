@@ -78,3 +78,16 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* Grid container, Was thinking about using repeat to show multiple movies if thats what we want.*/
+/* .movies-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+} */
+
+/* Card Styling */
+.movie-card {
+  /* Add additional styling as needed */
+}
+
