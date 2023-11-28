@@ -10,12 +10,15 @@
         let url = `https://www.omdbapi.com/?apikey=3ca7a7ca&s=${searchWord}`
         let data = await fetch(url);
         let response = await data.json();
+
+        
         movieData = response.Search;
+        console.log(movieData)
 
     }
     function handleKeyPress(event) {
     if (event.key === "Enter") {
-      search();
+      search(1);
     }
   }
 
@@ -39,10 +42,16 @@
 </fieldset>
 
 <div class="movie-results">
+{#if movieData}
 {#each movieData as movie}
+    {#if movie.Type != "game"}
     <MovieCard {movie}/>
-   
+   {/if}
 {/each}
+{:else}
+<div>No Results</div>
+{/if}
+
 </div>
 <!-- 
 <div class="pagination">
