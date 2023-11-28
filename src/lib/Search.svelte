@@ -1,41 +1,19 @@
 <script>
-  let searchWord = "";
-  let movieData = [];
-  let detailedMovieData = [];
-  let currentPage = 1;
-  let totalPages = 0;
+    import MovieCard from "./MovieCard.svelte";
+    let searchWord = "";
+    let movieData = [];
+    let currentPage = 1;
+    let totalPages = 0;
 
-  async function search(page = 1) {
-    currentPage = page;
-    let url = `https://www.omdbapi.com/?apikey=3ca7a7ca&s=${searchWord}&page=${currentPage}&type=movie`;
+    async function search(page = 1){
+       currentPage = page;
+        let url = `https://www.omdbapi.com/?apikey=3ca7a7ca&s=${searchWord}`
+        let data = await fetch(url);
+        let response = await data.json();
+        movieData = response.Search;
 
-    let data = await fetch(url);
-    let response = await data.json();
-
-    if (response.Search && response.Search.length) {
-      movieData = response.Search.slice(0, 5); // Limit the search to 5 results, can increase
-      totalPages = Math.ceil(response.totalResults / 5);
-      fetchMovieDetails();
-    } else {
-      movieData = [];
-      detailedMovieData = [];
     }
-  }
-    // Function to FETCH all movie details, we can narrow this down later to improve performance if need be
-  async function fetchMovieDetails() {
-    let newDetailedMovieData = [];
-    for (let movie of movieData) {
-      let url = `https://www.omdbapi.com/?apikey=3ca7a7ca&i=${movie.imdbID}`;
-      let data = await fetch(url);
-      let movieDetail = await data.json();
-      newDetailedMovieData.push(movieDetail);
-    }
-    detailedMovieData = newDetailedMovieData; // Trigger reactivity
-    console.log(detailedMovieData);
-  }
-
-  // Function to handle key press in the input field
-  function handleKeyPress(event) {
+    function handleKeyPress(event) {
     if (event.key === "Enter") {
       search();
     }
@@ -60,23 +38,25 @@
   <button on:click={() => search(1)}>Search</button>
 </fieldset>
 
-<div class="movies-container">
-    {#each detailedMovieData as movie}
-    <div class="movie-card">
-      <h2>{movie.Title}</h2>
-      <img alt={movie.Title} src={movie.Poster} />
-      <p>Released: {movie.Released}</p>
-      <p>Director: {movie.Director}</p>
-      <p>IMDB Rating: {movie.imdbRating}</p>
-      <p>Rated: {movie.Rated}</p>
-    </div>
-  {/each}
+<div class="movie-results">
+{#each movieData as movie}
+    <MovieCard {movie}/>
+   
+{/each}
 </div>
-
-
+<!-- 
 <div class="pagination">
   <button on:click={previousPage} disabled={currentPage === 1}>Previous</button>
   <span>Page {currentPage} of {totalPages}</span>
   <button on:click={nextPage} disabled={currentPage === totalPages}>Next</button
   >
-</div>
+</div> -->
+<style>
+    .movie-results {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        list-style-type: none;
+        padding: 0;
+    }
+</style>

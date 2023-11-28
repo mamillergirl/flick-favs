@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter=swap');
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -79,15 +80,9 @@ button:focus-visible {
   }
 }
 
-/* Grid container, Was thinking about using repeat to show multiple movies if thats what we want.*/
-/* .movies-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 10px;
-} */
-
-/* Card Styling */
-.movie-card {
-  /* Add additional styling as needed */
+body {
+  background-color: #232234;
+  color: white;
+  font-family: 'Inter', sans-serif;
 }
 
