@@ -86,3 +86,26 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
+.mission, .story{
+  max-width: 300px;
+  border: dashed #213547 5px;
+  padding: 5px;
+  background-color: white;
+  color:#213547;
+  margin: 20px;
+}
+
+.purpose-box{
+  display: flex;
+}
+
+@media screen and (max-width: 650px){
+  .mission, .story{
+    padding: 2px;
+    margin: 20px;
+  }
+
+  .purpose-box{
+    display: inline;
+  }
+}
