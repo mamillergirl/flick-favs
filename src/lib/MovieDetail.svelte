@@ -1,12 +1,45 @@
 <script>
     export let movie;
-    import { route } from './stores.mjs';
+    import { getLocalStorage, setLocalStorage} from './stores.mjs';
     let value = 0;
-  
-   
-
+    let saved = false;
     let stars = [1, 2, 3, 4, 5];
-  
+
+    function checkSaved(movieId) {
+      let stored = getLocalStorage('watchlist');
+      if (stored) {
+        const watchlistIds = stored.map(item => item.imdbID); // Extract IMDb IDs from stored items
+      
+        if (watchlistIds.includes(movie.imdbID)) {
+          saved = true;
+        }
+      }
+      
+    }
+
+    checkSaved()
+    
+    function addToWatchlist(){
+      const storedItems = getLocalStorage("watchlist") || [];
+      storedItems.push(movie);
+      setLocalStorage("watchlist", storedItems)
+      saved = true;
+    }
+    
+    
+    function deleteFromWatchlist(movieId) {
+      let cartItems = getLocalStorage("watchlist") || [];
+
+      const updatedCartItems = cartItems.filter(item => item.imdbID !== movie.imdbID);
+      console.log(updatedCartItems)
+
+      if (updatedCartItems.length !== cartItems.length) {
+        // Item was removed, update local storage with the modified array
+        setLocalStorage("watchlist", updatedCartItems);
+     
+      }
+      saved = false;
+    }
 
 
 </script>
@@ -16,7 +49,17 @@
     <div class="movie-overview">
     <div class="left">
         <img src = {movie.Poster} alt= {movie.Title} />
-        <button>Add to Watchlist +</button>
+          {#if !saved}
+          <button on:click={() => addToWatchlist()}>
+          Add to Watchlist +
+         </button>
+          {:else}
+          <button on:click={() => deleteFromWatchlist()} class = "saved">
+          Added to Watchlist &#10003;
+          </button>
+          {/if}
+
+        
     </div>
     <div class="right">
         <div class="title">
@@ -93,6 +136,10 @@
     background-color:  #ff5858;
     color: white;
     margin: 10px;
+   }
+   .saved {
+    background-color: #232234;
+    color: #ff5858;
    }
    
    input {

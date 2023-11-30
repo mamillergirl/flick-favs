@@ -4,6 +4,7 @@
   import Search from "./lib/Search.svelte";
   import MovieDetail from "./lib/MovieDetail.svelte";
   import { route, getParam } from './lib/stores.mjs';
+  import Watchlist from './lib/Watchlist.svelte';
 
   let currentRoute;
   let imdbId = '';
@@ -21,10 +22,7 @@
     if (currentRoute.startsWith('#movie-detail')) {
       imdbId = getParam('imdb');
       if (imdbId) {
-        getMovieDetail().then(() => {
-          // After fetching movie details, update the movie variable
-          console.log(movie); // Ensure movie details are fetched
-        });
+        getMovieDetail()
       }
     }
   });
@@ -49,6 +47,8 @@
     {/if}
   {:else if $route === '#search'}
     <Search/>
+  {:else if $route === '#watchlist'} 
+    <Watchlist/> 
   {:else}
     <h2>Welcome Home</h2>
     <div class="purpose-box">
