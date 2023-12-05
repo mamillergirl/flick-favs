@@ -26,6 +26,10 @@
         height: 350px;
         object-fit: cover;
     }
+
+    h3{
+      color:white;
+    }
    
   </style>
   
