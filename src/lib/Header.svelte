@@ -79,7 +79,7 @@ h1{
 
 .line1, .line2 {
     background-color: #FF5858;
-    width:100%;
+    width: 99%;
     min-height: 7px;
     max-height: 7px;
     margin-top: 6px;
