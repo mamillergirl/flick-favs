@@ -91,7 +91,8 @@ footer div{
     color: #747bff;
   }
   button {
-    background-color: #f9f9f9;
+    background-color: #FF5858;
+    color: white;
   }
 }
 
@@ -103,15 +104,17 @@ body {
 
 .mission, .story{
   max-width: 300px;
-  border: dashed #213547 5px;
+  border: dashed #FF5858 5px;
   padding: 5px;
   background-color: white;
   color:#213547;
   margin: 20px;
+  border-radius: 15px;
 }
 
 .purpose-box{
   display: flex;
+  justify-content: space-evenly;
 }
 
 @media screen and (max-width: 650px){
