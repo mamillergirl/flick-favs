@@ -11,6 +11,7 @@
   let currentRoute;
   let imdbId = '';
   let movie = null;
+ 
 
   export async function getMovieDetail() {
     let url = `https://www.omdbapi.com/?apikey=3ca7a7ca&i=${imdbId}`
@@ -39,11 +40,10 @@
 </script>
 
 
-<Header/>
-
 <main>
   {#if $route.startsWith('#movie-detail')}
     {#if movie !== null}
+      <Header/>
       <MovieDetail {movie}/>
     {:else}
       <p>Loading movie details...</p>
@@ -51,9 +51,12 @@
   {:else if $route === '#search'}
     <Search/>
   {:else if $route === '#watchlist'} 
+    <Header/>
     <Watchlist/>
     <a href="#genre"><button>Find more to watch</button></a>
   {:else}
+   <Header/>
+    <h2>Welcome Home</h2>
     <Carousel/>
     <div class="purpose-box">
       <div class="mission">
