@@ -1,5 +1,6 @@
 <script>
     export let movie;
+
     import { getLocalStorage, setLocalStorage} from './stores.mjs';
     let value = 0;
     let saved = false;
@@ -44,7 +45,7 @@
 
 </script>
 
-<div>
+<div class="movieDetail">
     <h2 class="overview">Overview</h2>
     <div class="movie-overview">
     <div class="left">
@@ -101,10 +102,11 @@
 </div>
 
 <style>
+
    .movie-overview {
     display: flex;
     
-   
+    justify-content: center;
    }
    .overview {
     font-weight: bold;
@@ -136,6 +138,8 @@
     background-color:  #ff5858;
     color: white;
     margin: 10px;
+    max-width: 200px;
+    margin: auto;
    }
    .saved {
     background-color: #232234;
@@ -146,6 +150,11 @@
     width: 100%;
     min-height: 30px;
     background-color: white;
+   }
+   .left {
+    display: flex;
+    flex-direction: column;
+  
    }
 
    .stars {
