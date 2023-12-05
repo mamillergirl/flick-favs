@@ -8,9 +8,10 @@
         <div id="navLogo"><img src="src\assets\icon-no-background.svg" alt=icon/ class="headerLogo"></div>
         <div id="navName"><h1>flickfaves</h1></div>
         <div id="navHome"><a href="/#home">Home</a></div>
-        {#if $userStore.isLoggedIn}
         <div id="navGenre"><a href="#genre">Genres</a></div>
         <div id="navWatchlist"><a href="/#watchlist">Watchlist</a></div>
+        {#if $userStore.isLoggedIn}
+        <div id="navLogout"><a href="/#home" on:click={logout}>Logout</a></div>
         {:else}
         <div id="NavLogin"><a href="#login">Login</a></div>
         {/if}
