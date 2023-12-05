@@ -50,7 +50,8 @@
   {:else if $route === '#search'}
     <Search/>
   {:else if $route === '#watchlist'} 
-    <Watchlist/> 
+    <Watchlist/>
+    <a href="#genre"><button>Find more to watch</button></a>
   {:else}
     <Carousel/>
     <div class="purpose-box">
