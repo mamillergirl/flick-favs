@@ -52,7 +52,6 @@
   {:else if $route === '#watchlist'} 
     <Watchlist/> 
   {:else}
-    <h2>Welcome Home</h2>
     <Carousel/>
     <div class="purpose-box">
       <div class="mission">
@@ -64,7 +63,7 @@
           <p>We are college students, tired of not being able to find movies to watch because of too many options. Together, we created Flick Favs as a way to find movie information and save interesting movies to watchlists. We also implemented a way for users to comment about movies they like or dislike for the benefit of others.</p>
         </div>
     </div>
-    <a href="#search"><button>Create Your Movie Wishlist!</button></a>
+    <a href="#search"><button>Create Your Movie Watchlist!</button></a>
   {/if}
 </main>
 
