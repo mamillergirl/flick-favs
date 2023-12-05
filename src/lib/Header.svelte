@@ -1,10 +1,19 @@
+<script>
+    import { userStore } from "./stores.mjs";
+    import { logout } from "./auth.mjs";
+</script>
+  
 <nav class="nav">
         <div class="header">
         <div id="navLogo"><img src="src\assets\icon-no-background.svg" alt=icon/ class="headerLogo"></div>
         <div id="navName"><h1>flickfaves</h1></div>
         <div id="navHome"><a href="/#home">Home</a></div>
+        {#if $userStore.isLoggedIn}
         <div id="navGenre"><a href="#genre">Genres</a></div>
         <div id="navWatchlist"><a href="/#watchlist">Watchlist</a></div>
+        {:else}
+        <div id="NavLogin"><a href="#login">Login</a></div>
+        {/if}
         <div id="navSearch"><a href="/#search">Search</a>
         <img src="src\assets\icons8-search.svg" alt="search icon" id="searchIconImage"/>
     </div>

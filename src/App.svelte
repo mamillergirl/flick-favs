@@ -3,9 +3,11 @@
   import Header from "./lib/Header.svelte";
   import Search from "./lib/Search.svelte";
   import MovieDetail from "./lib/MovieDetail.svelte";
-  import { route, getParam } from './lib/stores.mjs';
+  import { route, getParam, userStore } from './lib/stores.mjs';
   import Watchlist from './lib/Watchlist.svelte';
   import Carousel from './lib/Carousel.svelte';
+  import Login from "./lib/Login.svelte";
+  import { checkLogin } from "./lib/auth.mjs";
 
   let currentRoute;
   let imdbId = '';
@@ -35,12 +37,6 @@
   onMount(() => {
     route.set(window.location.hash);
   });
-  import { onMount } from "svelte";
-  import Login from "./lib/Login.svelte";
-  import { userStore, route } from "./lib/stores.mjs";
-  import { checkLogin } from "./lib/auth.mjs";
-  import Navbar from "./lib/Navbar.svelte";
-  import UserProfile from "./lib/UserProfile.svelte";
 
   async function init() {
     await checkLogin();
@@ -58,7 +54,6 @@
 
 
 <Header/>
-  <Navbar/>
 
 <main>
   {#if $route.startsWith('#movie-detail')}
@@ -71,6 +66,8 @@
     <Search/>
   {:else if $route === '#watchlist'} 
     <Watchlist/> 
+  {:else if $route === '#login'} 
+    <Login/>
   {:else}
     <Carousel/>
     <div class="purpose-box">
@@ -84,16 +81,7 @@
         </div>
     </div>
     <a href="#search"><button>Create Your Movie Watchlist!</button></a>
-  {/if}
-  <div class="card">
-    {#if $route === "#login"}
-      <Login />
-    {:else if $route === "#profile"}
-      <UserProfile />
-    {:else}
-      <p>Home</p>
-    {/if}
-  </div>
+{/if}
 </main>
 
 <style>
