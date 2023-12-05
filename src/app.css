@@ -102,14 +102,16 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
+
 .mission, .story{
   max-width: 300px;
-  border: dashed #FF5858 5px;
   padding: 5px;
-  background-color: white;
-  color:#213547;
+  color:white;
   margin: 20px;
-  border-radius: 15px;
+}
+
+.mission h2, .story h2 {
+  font-family: 'Anton', sans-serif;
 }
 
 .purpose-box{
