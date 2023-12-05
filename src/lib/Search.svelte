@@ -1,21 +1,26 @@
 <script>
-    import MovieCard from "./MovieCard.svelte";
-    let searchWord = "";
-    let movieData = [];
-    let currentPage = 1;
-    let totalPages = 0;
+  import MovieCard from "./MovieCard.svelte";
+  export let searchWord = "";
+  export let movieData = [];
+  export let currentPage = 1;
+  export let totalPages = 0;
 
-    async function search(page = 1){
-       currentPage = page;
-        let url = `https://www.omdbapi.com/?apikey=3ca7a7ca&s=${searchWord}`
-        let data = await fetch(url);
-        let response = await data.json();
-        movieData = response.Search;
+  const ITEMS_PER_PAGE = 10; // change this to affect the pagination
 
-    }
-    function handleKeyPress(event) {
+  export async function search(page = 1) {
+    currentPage = page;
+    let url = `https://www.omdbapi.com/?apikey=3ca7a7ca&s=${searchWord}&page=${page}`;
+    let data = await fetch(url);
+    let response = await data.json();
+
+    movieData = response.Search;
+    totalPages = Math.ceil(response.totalResults / ITEMS_PER_PAGE);
+    console.log(movieData);
+  }
+
+  function handleKeyPress(event) {
     if (event.key === "Enter") {
-      search();
+      search(1);
     }
   }
 
@@ -39,24 +44,29 @@
 </fieldset>
 
 <div class="movie-results">
-{#each movieData as movie}
-    <MovieCard {movie}/>
-   
-{/each}
+  {#if movieData}
+    {#each movieData as movie}
+      {#if movie.Type != "game"}
+        <MovieCard {movie} />
+      {/if}
+    {/each}
+  {:else}
+    <div>No Results</div>
+  {/if}
 </div>
-<!-- 
+
 <div class="pagination">
   <button on:click={previousPage} disabled={currentPage === 1}>Previous</button>
   <span>Page {currentPage} of {totalPages}</span>
-  <button on:click={nextPage} disabled={currentPage === totalPages}>Next</button
-  >
-</div> -->
+  <button on:click={nextPage} disabled={currentPage === totalPages}>Next</button>
+</div>
+
 <style>
-    .movie-results {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-between;
-        list-style-type: none;
-        padding: 0;
-    }
+  .movie-results {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    list-style-type: none;
+    padding: 0;
+  }
 </style>

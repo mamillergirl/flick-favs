@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap'); 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -35,14 +36,19 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  font-family: 'Anton', sans-serif;
 }
 
 .card {
   padding: 2em;
 }
 
-#app {
-  max-width: 1280px;
+#app{
+ min-width: 100vw;
+}
+
+main{
+  max-width:1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -67,6 +73,15 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+footer div{
+  background-color: #FF5858;
+  width:100%;
+  min-height: 7px;
+  max-height: 7px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -86,3 +101,27 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
+.mission, .story{
+  max-width: 300px;
+  border: dashed #213547 5px;
+  padding: 5px;
+  background-color: white;
+  color:#213547;
+  margin: 20px;
+}
+
+.purpose-box{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+@media screen and (max-width: 650px){
+  .mission, .story{
+    padding: 2px;
+    margin: 20px;
+  }
+
+  .purpose-box{
+    display: inline;
+  }
+}
