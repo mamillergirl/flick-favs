@@ -5,12 +5,13 @@
   import MovieDetail from "./lib/MovieDetail.svelte";
   import { route, getParam } from './lib/stores.mjs';
   import Watchlist from './lib/Watchlist.svelte';
+  import Carousel from './lib/Carousel.svelte';
 
   let currentRoute;
   let imdbId = '';
   let movie = null;
 
-  async function getMovieDetail() {
+  export async function getMovieDetail() {
     let url = `https://www.omdbapi.com/?apikey=3ca7a7ca&i=${imdbId}`
     let data = await fetch(url);
     let response = await data.json();
@@ -51,6 +52,7 @@
     <Watchlist/> 
   {:else}
     <h2>Welcome Home</h2>
+    <Carousel/>
     <div class="purpose-box">
       <div class="mission">
         <h2>Our Mission</h2>
