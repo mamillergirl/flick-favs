@@ -6,6 +6,7 @@
   import { route, getParam } from './lib/stores.mjs';
   import Watchlist from './lib/Watchlist.svelte';
   import Carousel from './lib/Carousel.svelte';
+  import Footer from './lib/Footer.svelte';
 
   let currentRoute;
   let imdbId = '';
@@ -52,7 +53,6 @@
   {:else if $route === '#watchlist'} 
     <Watchlist/> 
   {:else}
-    <h2>Welcome Home</h2>
     <Carousel/>
     <div class="purpose-box">
       <div class="mission">
@@ -64,11 +64,25 @@
           <p>We are college students, tired of not being able to find movies to watch because of too many options. Together, we created Flick Favs as a way to find movie information and save interesting movies to watchlists. We also implemented a way for users to comment about movies they like or dislike for the benefit of others.</p>
         </div>
     </div>
-    <a href="#search"><button>Create Your Movie Wishlist!</button></a>
+    <a href="#search" id="createBttn"><button>Create Your Movie Wishlist!</button></a>
   {/if}
 </main>
 
+<Footer/>
+
 <style>
+
+button {
+color:white;
+background-color:#FF5858;
+}
+
+#createBttn :hover {
+  background-color: #232234;
+  border: 1px white solid;
+}
+
+
 
 </style>
 
