@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "moduleResolution": "bundler",
+    "moduleResolution": "node", //  it said "bundler"
     "target": "ESNext",
     "module": "ESNext",
     /**

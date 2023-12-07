@@ -3,10 +3,15 @@
   import Header from "./lib/Header.svelte";
   import Search from "./lib/Search.svelte";
   import MovieDetail from "./lib/MovieDetail.svelte";
-  import { route, getParam } from './lib/stores.mjs';
+  import { route, getParam, userStore } from './lib/stores.mjs';
   import Watchlist from './lib/Watchlist.svelte';
   import Carousel from './lib/Carousel.svelte';
+
+  import Login from "./lib/Login.svelte";
+  import { checkLogin } from "./lib/auth.mjs";
+
   import Footer from './lib/Footer.svelte';
+
 
   let currentRoute;
   let imdbId = '';
@@ -37,6 +42,19 @@
   onMount(() => {
     route.set(window.location.hash);
   });
+
+  async function init() {
+    await checkLogin();
+  }
+
+  window.addEventListener("popstate", () => {
+    if (document.location.hash == "#profile" && !$userStore.isLoggedIn) {
+      console.log($userStore);
+      document.location.hash = "#login";
+    } else $route = document.location.hash;
+  });
+
+  onMount(init);
 </script>
 
 
@@ -51,9 +69,12 @@
   {:else if $route === '#search'}
     <Search/>
   {:else if $route === '#watchlist'} 
-    <Header/>
+        <Header/>
     <Watchlist/>
     <a href="#genre"><button>Find more to watch</button></a>
+  {:else if $route === '#login'} 
+    <Login/>
+
   {:else}
    <Header/>
     <h2>Welcome Home</h2>
@@ -68,8 +89,10 @@
           <p>We are college students, tired of not being able to find movies to watch because of too many options. Together, we created Flick Favs as a way to find movie information and save interesting movies to watchlists. We also implemented a way for users to comment about movies they like or dislike for the benefit of others.</p>
         </div>
     </div>
-    <a href="#search" id="createBttn"><button>Create Your Movie Wishlist!</button></a>
-  {/if}
+
+    <a href="#search"><button>Create Your Movie Watchlist!</button></a>
+{/if}
+
 </main>
 
 <Footer/>
