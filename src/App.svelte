@@ -6,12 +6,17 @@
   import { route, getParam, userStore } from './lib/stores.mjs';
   import Watchlist from './lib/Watchlist.svelte';
   import Carousel from './lib/Carousel.svelte';
+
   import Login from "./lib/Login.svelte";
   import { checkLogin } from "./lib/auth.mjs";
+
+  import Footer from './lib/Footer.svelte';
+
 
   let currentRoute;
   let imdbId = '';
   let movie = null;
+ 
 
   export async function getMovieDetail() {
     let url = `https://www.omdbapi.com/?apikey=3ca7a7ca&i=${imdbId}`
@@ -53,11 +58,10 @@
 </script>
 
 
-<Header/>
-
 <main>
   {#if $route.startsWith('#movie-detail')}
     {#if movie !== null}
+      <Header/>
       <MovieDetail {movie}/>
     {:else}
       <p>Loading movie details...</p>
@@ -65,10 +69,15 @@
   {:else if $route === '#search'}
     <Search/>
   {:else if $route === '#watchlist'} 
-    <Watchlist/> 
+        <Header/>
+    <Watchlist/>
+    <a href="#genre"><button>Find more to watch</button></a>
   {:else if $route === '#login'} 
     <Login/>
+
   {:else}
+   <Header/>
+    <h2>Welcome Home</h2>
     <Carousel/>
     <div class="purpose-box">
       <div class="mission">
@@ -80,11 +89,27 @@
           <p>We are college students, tired of not being able to find movies to watch because of too many options. Together, we created Flick Favs as a way to find movie information and save interesting movies to watchlists. We also implemented a way for users to comment about movies they like or dislike for the benefit of others.</p>
         </div>
     </div>
+
     <a href="#search"><button>Create Your Movie Watchlist!</button></a>
 {/if}
+
 </main>
 
+<Footer/>
+
 <style>
+
+button {
+color:white;
+background-color:#FF5858;
+}
+
+#createBttn :hover {
+  background-color: #232234;
+  border: 1px white solid;
+}
+
+
 
 </style>
 

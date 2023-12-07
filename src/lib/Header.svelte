@@ -1,9 +1,11 @@
 <script>
+
     import { userStore } from "./stores.mjs";
     import { logout } from "./auth.mjs";
 </script>
   
 <nav class="nav">
+
         <div class="header">
         <div id="navLogo"><img src="src\assets\icon-no-background.svg" alt=icon/ class="headerLogo"></div>
         <div id="navName"><h1>flickfaves</h1></div>
@@ -86,7 +88,7 @@ h1{
 
 .line1, .line2 {
     background-color: #FF5858;
-    width:100%;
+    width: 99%;
     min-height: 7px;
     max-height: 7px;
     margin-top: 6px;

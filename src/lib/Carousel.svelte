@@ -39,6 +39,7 @@
 
 <h1>New Releases</h1>
 <div class="carousel-container">
+  <button on:click={showPrevious} class="prev">&#10094;</button>
   {#if movies.length > 0}
     {#each currentMovies as movie, index (movie.imdbID)}
       <MovieCard {movie} />
@@ -46,17 +47,17 @@
   {:else}
     <p>Loading movies...</p>
   {/if}
-  <button on:click={showPrevious} class="prev">&#10094;</button>
   <button on:click={showNext} class="next">&#10095;</button>
 </div>
 
 <style>
   .carousel-container {
     display: flex;
-    justify-content: start;
+    justify-content: center;
     gap: 16px;
-    overflow-x: auto;
     padding: 16px 0;
+    border: white 3px solid;
+    border-radius: 10px;
   }
 
   .carousel-container > * {
@@ -70,21 +71,20 @@
   .prev,
   .next {
     cursor: pointer;
-    position: absolute;
-    top: 40%;
     width: auto;
     padding: 16px;
-    margin-top: -22px;
+    margin: 200px 0px 200px 0px;
+    background-color: #232234;
     color: white;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 30px;
     transition: 0.6s ease;
     border-radius: 0 3px 3px 0;
     user-select: none;
   }
   .next {
     right: 30%;
-    border-radius: 3px 0 0 3px;
+    border-radius: 0 3px 3px 0;
   }
   .prev {
     left: 30%;
@@ -92,6 +92,6 @@
   }
   .prev:hover,
   .next:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: #FF5858;
   }
 </style>

@@ -7,7 +7,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #232234;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -18,17 +18,16 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: white;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #f9f9f9;
 }
 
 body {
   margin: 0;
   display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -48,7 +47,7 @@ h1 {
 }
 
 main{
-  max-width:1280px;
+  
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -66,7 +65,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: white;
 }
 button:focus,
 button:focus-visible {
@@ -88,10 +87,11 @@ footer div{
     background-color: #ffffff;
   }
   a:hover {
-    color: #747bff;
+    color: white;
   }
   button {
-    background-color: #f9f9f9;
+    background-color: #FF5858;
+    color: white;
   }
 }
 
@@ -101,13 +101,16 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
+
 .mission, .story{
   max-width: 300px;
-  border: dashed #213547 5px;
   padding: 5px;
-  background-color: white;
-  color:#213547;
+  color:white;
   margin: 20px;
+}
+
+.mission h2, .story h2 {
+  font-family: 'Anton', sans-serif;
 }
 
 .purpose-box{
