@@ -1,14 +1,22 @@
 <script>
+    import { onMount } from "svelte";
     import MovieCard from "./MovieCard.svelte";
+    
     let searchWord;
     let movieData = [];
     let currentPage = 1;
     let totalPages = 0;
+    let apiKey= import.meta.env.VITE_API_KEY
+    let inputElement;
+
+    onMount(() => {
+      inputElement.focus();
+    });
 
     async function search(page = 1){
         console.log
        currentPage = page;
-        let url = `https://www.omdbapi.com/?apikey=3ca7a7ca&s=${searchWord}`
+        let url = `https://www.omdbapi.com/?apikey=${apiKey}&s=${searchWord}`
         let data = await fetch(url);
         let response = await data.json();
 
@@ -47,13 +55,8 @@
   <div id="navWatchlist"><a href="/#watchlist">Watchlist</a></div>
   <!-- <div id="navSearch"><input class = "navSearch" placeholder="Search" bind:value={searchWord} on:change={()=> search(1)} /> -->
   <div id="navSearch">
-    <input
-      class="navSearch"
-      placeholder="Search"
-      bind:value={searchWord}
-      on:input={handleInputChange} 
-      on:keypress={handleKeyPress}
-      autofocus/>
+
+    <input class="navSearch" placeholder="Search"  bind:this={inputElement}  bind:value={searchWord} on:input={handleInputChange}  on:keypress={handleKeyPress} />
       <img src="src\assets\icons8-search.svg" alt="search icon" id="searchIconImage"/>
     </div>
 

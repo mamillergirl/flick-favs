@@ -4,7 +4,7 @@
 
   let currentIndex = 0;
   let movies = []; // Array to hold the fetched movie data
-  const apiKey = "3ca7a7ca"; // We should also think of having a secrets file for our api code.
+  const apiKey = import.meta.env.VITE_API_KEY;
 
   onMount(async () => {
     await fetchLatestMovies();
@@ -64,10 +64,10 @@
     flex: 0 0 auto;
   }
 
-  .carousel-slide img {
+  /* .carousel-slide img {
     width: 100%;
     display: block;
-  }
+  } */
   .prev,
   .next {
     cursor: pointer;

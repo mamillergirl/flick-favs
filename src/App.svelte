@@ -17,9 +17,10 @@
   let imdbId = '';
   let movie = null;
  
+  let apiKey = import.meta.env.VITE_API_KEY;
 
   export async function getMovieDetail() {
-    let url = `https://www.omdbapi.com/?apikey=3ca7a7ca&i=${imdbId}`
+    let url = `https://www.omdbapi.com/?apikey=${apiKey}&i=${imdbId}`
     let data = await fetch(url);
     let response = await data.json();
     movie = response;
@@ -71,7 +72,6 @@
   {:else if $route === '#watchlist'} 
         <Header/>
     <Watchlist/>
-    <a href="#genre"><button>Find more to watch</button></a>
   {:else if $route === '#login'} 
     <Login/>
 
@@ -104,12 +104,9 @@ color:white;
 background-color:#FF5858;
 }
 
-#createBttn :hover {
-  background-color: #232234;
-  border: 1px white solid;
-}
 
 
 
 </style>
+
 
