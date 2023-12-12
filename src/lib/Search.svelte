@@ -14,16 +14,17 @@
     });
 
     async function search(page = 1){
-        console.log
-       currentPage = page;
-        let url = `https://www.omdbapi.com/?apikey=${apiKey}&s=${searchWord}`
-        let data = await fetch(url);
-        let response = await data.json();
+        currentPage = page;
+        let url = `https://www.omdbapi.com/?apikey=${apiKey}&s=${searchWord}&page=${page}`;
+        let response = await fetch(url).then(res => res.json());
 
-        
-        movieData = response.Search;
-        console.log(movieData)
-
+        if (response.Response === "True") {
+            movieData = response.Search;
+            totalPages = Math.ceil(response.totalResults / 10); // Assuming 10 results per page
+        } else {
+            movieData = [];
+            totalPages = 0;
+        }
     }
     function handleKeyPress(event) {
     if (event.key === "Enter") {
@@ -80,13 +81,12 @@
 {/if}
 
 </div>
-<!-- 
+
 <div class="pagination">
   <button on:click={previousPage} disabled={currentPage === 1}>Previous</button>
   <span>Page {currentPage} of {totalPages}</span>
-  <button on:click={nextPage} disabled={currentPage === totalPages}>Next</button
-  >
-</div> -->
+  <button on:click={nextPage} disabled={currentPage === totalPages}>Next</button>
+</div>
 <style>
   input:focus {
     outline: none;
