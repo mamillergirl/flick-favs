@@ -6,6 +6,8 @@
   import { route, getParam, userStore } from './lib/stores.mjs';
   import Watchlist from './lib/Watchlist.svelte';
   import Carousel from './lib/Carousel.svelte';
+  import Genres from './lib/Genres.svelte';
+
 
   import Login from "./lib/Login.svelte";
   import { checkLogin } from "./lib/auth.mjs";
@@ -67,11 +69,15 @@
     {:else}
       <p>Loading movie details...</p>
     {/if}
+  
   {:else if $route === '#search'}
     <Search/>
   {:else if $route === '#watchlist'} 
         <Header/>
     <Watchlist/>
+    {:else if $route === '#genres'}
+    <Header/>
+    <Genres/>
   {:else if $route === '#login'} 
     <Login/>
 
