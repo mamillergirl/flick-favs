@@ -6,7 +6,7 @@
 
 </script>
 <h2>Your Watchlist</h2>
-{#if movieData.length > 1}
+{#if movieData.length >= 1}
 
 <div class="watchlist">
     {#each movieData as movie}
