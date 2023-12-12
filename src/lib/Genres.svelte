@@ -78,65 +78,67 @@ function showPrevious(genreIndex) {
   </script>
   
   {#each genres as genre, genreIndex}
-    <h1>{genre.name} Movies</h1>
-    <div class="carousel-container">
-      <button on:click={() => showPrevious(genreIndex)} class="prev"
-        >&#10094;</button
-      >
-      {#if genre.movies.length > 0}
-        {#each currentMovies[genreIndex] as movie (movie.imdbID)}
-          <MovieCard {movie} />
-        {/each}
-      {:else}
-        <p>Loading movies...</p>
-      {/if}
-      <button on:click={() => showNext(genreIndex)} class="next">&#10095;</button>
-    </div>
+  <h1>{genre.name} Movies</h1>
+  <div class="carousel-container">
+    <button on:click={() => showPrevious(genreIndex)} class="prev">&#10094;</button>
+    {#if genre.movies.length > 0}
+      {#each currentMovies[genreIndex] as movie (movie.imdbID)}
+        <MovieCard {movie} />
+      {/each}
+    {:else}
+      <p>Loading movies...</p>
+    {/if}
+    <button on:click={() => showNext(genreIndex)} class="next">&#10095;</button>
+  </div>
   {/each}
   
   <style>
-    .carousel-container {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      padding: 16px 0;
-      /* border: white 3px solid; */
-      border-radius: 10px;
-    }
-  
-    .carousel-container > * {
-      flex: 0 0 auto;
-    }
-  
-    /* .carousel-slide img {
-        width: 100%;
-        display: block;
-      } */
-    .prev,
-    .next {
-      cursor: pointer;
-      width: auto;
-      padding: 16px;
-      margin: 200px 0px 200px 0px;
-      background-color: #232234;
-      color: white;
-      font-weight: bold;
-      font-size: 30px;
-      transition: 0.6s ease;
-      border-radius: 0 3px 3px 0;
-      user-select: none;
-    }
-    .next {
-      right: 30%;
-      border-radius: 0 3px 3px 0;
-    }
-    .prev {
-      left: 30%;
-      border-radius: 3px 0 0 3px;
-    }
-    .prev:hover,
-    .next:hover {
-      background-color: #ff5858;
-    }
+   .carousel-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    padding: 16px 50px; /* Adjust padding to give space for arrows */
+    border-radius: 10px;
+    overflow-x: auto; /* Add horizontal scroll for overflow */
+    scrollbar-width: none; /* Hide scrollbar */
+    -ms-overflow-style: none; /* Hide scrollbar in IE/Edge */
+  }
+
+  .carousel-container::-webkit-scrollbar {
+    display: none; /* Hide scrollbar in Webkit browsers */
+  }
+
+  .carousel-container > * {
+    flex: 0 0 auto;
+  }
+
+  .prev,
+  .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #232234;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    transition: 0.6s ease;
+    border-radius: 50%;
+    user-select: none;
+    z-index: 1; /* Ensure arrows appear above movies */
+  }
+
+  .prev {
+    left: 10px; /* Adjust the positioning of the previous button */
+  }
+
+  .next {
+    right: 10px; /* Adjust the positioning of the next button */
+  }
+
+  .prev:hover,
+  .next:hover {
+    background-color: #ff5858;
+  }
   </style>
   
