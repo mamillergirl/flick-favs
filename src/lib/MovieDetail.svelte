@@ -157,7 +157,7 @@
   
    }
 
-   .stars {
+   /* .stars {
         max-height: 24px;
         align-items: center;
    }
@@ -172,6 +172,6 @@
 
   .star:hover,
   .star.active {
-    color: #ff5858;
-  }
+    color: #ff5858; }*/
+  
 </style>
